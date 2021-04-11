@@ -1,0 +1,14 @@
+---
+title: "scripts"
+author: "JT_Miller"
+date: "4/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Where all my markdown scriots will be stored. 
+

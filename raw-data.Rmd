@@ -1,0 +1,18 @@
+---
+title: "raw-data"
+author: "JT_Miller"
+date: "4/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#External data that I havent produced or edited within R. For my personal case this isnt important since the Palmer Penguins comes preinstalled into R as a package. 
+```{r}
+#install.packages("Palmerpenguins") #This is the installation command for the penguins.
+library(palmerpenguins)
+penguins_raw #How to call the raw data found in this package. 
+```
+

@@ -1,0 +1,12 @@
+---
+title: "processed-data"
+author: "JT_Miller"
+date: "4/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#Data that was produced by me from the parent data set will be stored here.
