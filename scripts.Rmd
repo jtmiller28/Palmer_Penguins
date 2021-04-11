@@ -10,5 +10,90 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-# Where all my markdown scriots will be stored. 
+# Where all my markdown scripts will be stored. 
 
+```{r}
+library(dplyr)
+library(ggplot2)
+library(tidyr)
+library(car)
+```
+```{r}
+#install.packages("palmerpenguins")
+library(palmerpenguins)
+penguins_sub <- penguins_raw
+colnames(penguins_sub)
+names(penguins_sub) <- c("name", "sample", "species", "region", "island", "stage", "ID", "clutch_completion", "egg_date", "culmen_length", "culmen_depth", "flipper_length", "body_mass", "sex", "delta_15_N", "delta_13_C", "comments")
+```
+```{r}
+penguins_clean <- penguins_sub %>% drop_na(flipper_length) #Using the package tidyr, I omitted penguin data that contained NAs since that is my value of interest. 
+
+```
+
+```{r}
+ggplot(data = penguins_clean,  aes (x = species, y = flipper_length)) +
+  geom_boxplot()
+```
+
+```{r}
+penguins_gender_clean <- penguins_clean %>% drop_na(sex)
+
+
+
+penguins_flip_gender <- ggplot(data = penguins_gender_clean, aes (x = species, y = flipper_length, color = sex)) +
+  geom_boxplot() +
+  labs( x = "Penguin Species", y = "Flipper Length (mm)", title = "Flipper Length of Penguins") +
+  theme_bw()
+
+penguins_flip_gender + theme(axis.text = element_text(size = 7))
+```
+
+```{r}
+ggplot(data = penguins_gender_clean, aes ( x= flipper_length, )) +
+  geom_histogram() +
+  labs(y = "Frequency", x = "Flipper Length", title = "Flipper Length of Penguins") +
+  theme_bw()
+
+
+```
+
+```{r}
+ggplot(data = penguins_gender_clean, aes ( x= flipper_length, color = sex)) +
+  geom_histogram() +
+  facet_wrap(~sex) +
+  labs(y = "Frequency", x = "Flipper Length", title = "Flipper Length of Penguins") +
+  theme_bw()
+```
+
+```{r}
+ggplot(data = penguins_gender_clean, aes ( x= flipper_length, )) +
+  geom_histogram() +
+  facet_wrap(~species) +
+  labs(y = "Frequency", x = "Flipper Length", title = "Flipper Length of Penguins") +
+  theme_bw()
+```
+
+```{r}
+penguins_clean_m <- penguins_sub %>% drop_na(body_mass)
+
+
+ggplot(data = penguins_clean_m, aes ( x= body_mass, )) +
+  geom_histogram() +
+  labs(y = "Frequency", x = "Body Mass", title = "Body Mass of Penguins") +
+  theme_bw()
+
+body_mass_log <- log(penguins_clean_m$body_mass)
+
+ggplot(data = penguins_clean_m, aes ( x= body_mass_log, )) +
+  geom_histogram() +
+  labs(y = "Frequency", x = "Log of Body Mass", title = "Body Mass of Penguins") +
+  theme_bw()
+
+```
+
+```{r}
+ggplot(data = penguins_clean_m,  aes (x = clutch_completion, y = body_mass)) +
+  geom_boxplot() + 
+  labs(title = "Body mass for success of raising clutch")
+
+``` 
