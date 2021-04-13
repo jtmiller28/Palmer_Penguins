@@ -18,6 +18,8 @@ library(ggplot2)
 library(tidyr)
 library(car)
 ```
+
+
 ```{r}
 #install.packages("palmerpenguins")
 library(palmerpenguins)
@@ -97,3 +99,27 @@ ggplot(data = penguins_clean_m,  aes (x = clutch_completion, y = body_mass)) +
   labs(title = "Body mass for success of raising clutch")
 
 ``` 
+
+
+```{r}
+ggplot(data = penguins_clean, aes ( x= culmen_length, )) +
+  geom_histogram() +
+  labs(y = "Frequency", x = "culmen_length", title = "Body Mass of Penguins") +
+  theme_bw()
+
+qqPlot(penguins_clean$culmen_length)
+?qqplot
+```
+```{r}
+ggplot(data = penguins_clean, aes ( x= culmen_depth, )) +
+  geom_histogram() +
+  labs(y = "Frequency", x = "culmen_length", title = "Body Mass of Penguins") +
+  theme_bw()
+
+qqPlot(penguins_clean$culmen_depth)
+Adelie <- subset(penguins_clean, Adelie Penguin (Pygoscelis adeliae))
+```
+```{r}
+qqplot(penguins_clean$flipper_length)
+```
+
