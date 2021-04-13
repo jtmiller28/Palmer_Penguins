@@ -101,25 +101,24 @@ ggplot(data = penguins_clean_m,  aes (x = clutch_completion, y = body_mass)) +
 ``` 
 
 
+
 ```{r}
-ggplot(data = penguins_clean, aes ( x= culmen_length, )) +
+penguins_Adelie <- penguins_sub[penguins_sub$species == "Adelie Penguin (Pygoscelis adeliae)", ]
+penguins_Adelie_clean <- penguins_Adelie %>% drop_na(flipper_length)
+
+ggplot(data = penguins_Adelie_clean, aes ( x= flipper_length, )) +
   geom_histogram() +
-  labs(y = "Frequency", x = "culmen_length", title = "Body Mass of Penguins") +
+  labs(y = "Frequency", x = "Flipper Length", title = "Flipper Length among Adelie penguins") +
   theme_bw()
 
-qqPlot(penguins_clean$culmen_length)
-?qqplot
-```
-```{r}
-ggplot(data = penguins_clean, aes ( x= culmen_depth, )) +
-  geom_histogram() +
-  labs(y = "Frequency", x = "culmen_length", title = "Body Mass of Penguins") +
-  theme_bw()
+qqPlot(penguins_Adelie_clean$flipper_length)
+shapiro.test(penguins_Adelie_clean$flipper_length) #Wow it actually worked...its normal!
 
-qqPlot(penguins_clean$culmen_depth)
-Adelie <- subset(penguins_clean, Adelie Penguin (Pygoscelis adeliae))
-```
-```{r}
-qqplot(penguins_clean$flipper_length)
+ggplot(data = penguins_Adelie_clean, aes(x = body_mass))+
+  geom_histogram() +
+  labs(y = "Frequency", x = "Body Mass", title = "Body Mass among Adelie penguins") +
+  theme_bw()
+qqPlot(penguins_Adelie_clean$body_mass)
+shapiro.test(penguins_Adelie_clean$body_mass) #This one didnt however...
 ```
 
